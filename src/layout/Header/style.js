@@ -10,6 +10,7 @@ export const Header = styled.header`
   border-bottom: 2px grey solid;
   position: sticky;
   top: 0;
+  z-index: 100;
 `;
 
 export const HeaderRightSide = styled.div`

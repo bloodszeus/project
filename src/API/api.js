@@ -107,3 +107,21 @@ export const getUserData = async (userId) => {
   const response = await axiosConfig.get(`/users/${userId}`);
   return response.data;
 };
+
+export const updateUserData = async (
+  userId,
+  name,
+  extra_details,
+  skills,
+  profession,
+  details
+) => {
+  const response = await axiosConfig.patch(`/users/${userId}`, {
+    name,
+    extra_details,
+    skills,
+    profession,
+    details,
+  });
+  return response;
+};

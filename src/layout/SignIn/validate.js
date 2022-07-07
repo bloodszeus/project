@@ -1,4 +1,4 @@
-import { SignInValidApi } from "../../API/api";
+import { SignInValidApi } from "API/api";
 
 export const validate = async (form) => {
   let error = {};
@@ -13,7 +13,7 @@ export const validate = async (form) => {
   }
 
   if (!error.login && !error.email) {
-    const response = await SignInValidApi(email, password);
+    const response = await SignInValidApi(form);
 
     if (!response?.data) {
       error.email = "Something went wrong";

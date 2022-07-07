@@ -1,17 +1,19 @@
 import React from "react";
-import { Loader } from "../../components/Loader";
+import { Loader } from "components/Loader";
 import { Header } from "../Header";
 import { UserInfoItem } from "./components/UserInfoItem";
 import {
   Body,
   EditLoader,
   HeaderWrapper,
+  ResetBtn,
   SaveBtn,
   SuccessTitle,
   UserCard,
   UserCardHeader,
   Wrapper,
 } from "./style";
+import { Icons } from "components/Icons";
 
 export const UserAccountLayout = ({
   userDataInfo,
@@ -22,6 +24,7 @@ export const UserAccountLayout = ({
   userName,
   save,
   updateStatus,
+  reset,
 }) => {
   const STATUS = {
     LOADING: "loading",
@@ -38,7 +41,14 @@ export const UserAccountLayout = ({
           <UserCard>
             <HeaderWrapper>
               {saveBtn && <SaveBtn onClick={save}>Save</SaveBtn>}
-              {updateStatus === STATUS.LOADING && <EditLoader />}
+              {saveBtn && (
+                <ResetBtn onClick={reset}>
+                  <Icons name={"Reset"} size={25} />
+                </ResetBtn>
+              )}
+              {updateStatus === STATUS.LOADING && (
+                <EditLoader name={"Loader"} size={30} />
+              )}
               {updateStatus === STATUS.SUCCESS && (
                 <SuccessTitle>Updated successfuly!</SuccessTitle>
               )}

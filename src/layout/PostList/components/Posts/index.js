@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { LikeButton } from "../../../../components/LikeBtn";
-import { PostItem } from "../../../../components/PostItem";
-import { userData } from "../../../../store/userSlice";
+import { LikeButton } from "components/LikeBtn";
+import { PostItem } from "components/PostItem";
+import { userData } from "store/userSlice";
 import { ActionBtn } from "./style";
 
 export const Posts = ({

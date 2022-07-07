@@ -1,4 +1,4 @@
-import { SignUpValidApi } from "../../API/api";
+import { SignUpValidApi } from "API/api";
 
 export const validate = async (form) => {
   let error = {};
@@ -43,7 +43,7 @@ export const validate = async (form) => {
 
   if (!error.login && !error.email && !error.pass && !error.pass2) {
     const response = await SignUpValidApi({
-      email,
+      email: email,
       name: login,
       password: pass,
     });

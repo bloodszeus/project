@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { HeaderRightSide, Header, LeftSide, SignUpBtn } from "./style";
 
 import logo from "./logo.svg";
-import { Button } from "../../components/Button";
+import { Button } from "components/Button";
 
 export const HeaderLayout = ({ logged, logout, id }) => {
   return (

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { SignInApi, updateUserData } from "../API/api";
+import { SignInApi, updateUserData } from "API/api";
 
 export const fetchUserInfo = createAsyncThunk(
   "user/fetchUserInfo",
@@ -17,17 +17,8 @@ export const fetchUserInfo = createAsyncThunk(
 export const updateUserInfo = createAsyncThunk(
   "user/updateUserInfo",
   async (newData, { dispatch, rejectWithValue }) => {
-    const { userId, name, extra_details, skills, profession, details } =
-      newData;
     try {
-      const response = await updateUserData(
-        userId,
-        name,
-        extra_details,
-        skills,
-        profession,
-        details
-      );
+      const response = await updateUserData({ newData });
       dispatch(resetUser());
       dispatch(setInfo(response?.data));
       return response.data;

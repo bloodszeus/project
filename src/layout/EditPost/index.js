@@ -6,14 +6,14 @@ import {
   editError,
   editStatus,
   updatePostById,
-} from "../../store/UserPostSlice";
+} from "store/UserPostSlice";
 import {
   getPostApi,
   post,
   postStatus,
   statusReset,
   stateReset,
-} from "../../store/FullPostSlice";
+} from "store/FullPostSlice";
 
 import { EditPostLayout } from "./EditPostLayout";
 
@@ -36,9 +36,7 @@ export const EditPost = () => {
     dispatch(
       updatePostById({
         postId: post_id,
-        title: updatedPost.title,
-        fullText: updatedPost.fullText,
-        description: updatedPost.description,
+        ...updatedPost,
       })
     );
   };

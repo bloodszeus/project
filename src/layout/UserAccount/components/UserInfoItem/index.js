@@ -1,13 +1,7 @@
 import React, { useState } from "react";
+import { Icons } from "components/Icons";
 import { EditInfo } from "../EditInfo";
-import {
-  EditBtn,
-  PropName,
-  PropValue,
-  SvgBtn,
-  TitleBlock,
-  Wrapper,
-} from "./style";
+import { Btn, PropName, PropValue, TitleBlock, Wrapper } from "./style";
 
 export const UserInfoItem = ({
   name,
@@ -45,9 +39,9 @@ export const UserInfoItem = ({
       <TitleBlock>
         <PropName>{name}</PropName>
         {!editBtn && disabledName && (
-          <SvgBtn onClick={() => setEditBtn(true)}>
-            <EditBtn />
-          </SvgBtn>
+          <Btn onClick={() => setEditBtn(true)}>
+            <Icons name={"EditPen"} />
+          </Btn>
         )}
       </TitleBlock>
       {!editBtn && disabledName && (

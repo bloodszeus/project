@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { AuthContext } from "context";
+import React, { useContext, useState } from "react";
 import { useSelector } from "react-redux";
 import { userData } from "../../store/userSlice";
 import { Like, LikeBlock } from "./style";
@@ -7,6 +8,7 @@ export const LikeButton = ({ post, setLike }) => {
   const [likes, setLikes] = useState(post.likes);
   const user = useSelector(userData);
   const userId = user._id;
+  const { logged } = useContext(AuthContext);
 
   const handleClick = () => {
     if (likes.some((el) => el === userId)) {
@@ -17,13 +19,17 @@ export const LikeButton = ({ post, setLike }) => {
   };
 
   return (
-    <LikeBlock>
-      <p>{likes.length}</p>
+    <>
+      {logged && (
+        <LikeBlock>
+          <p>{likes.length}</p>
 
-      <Like
-        liked={likes.some((el) => el === userId) ? 1 : 0}
-        onClick={handleClick}
-      />
-    </LikeBlock>
+          <Like
+            liked={likes.some((el) => el === userId) ? 1 : 0}
+            onClick={handleClick}
+          />
+        </LikeBlock>
+      )}
+    </>
   );
 };

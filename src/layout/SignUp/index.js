@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useValid } from "../../hooks/useValid";
+import { useValid } from "hooks/useValid";
 import { validate } from "./validate";
 import { SignUpLayout } from "./SignUpLayout";
 

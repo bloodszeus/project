@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { AuthContext } from "../../context";
+import { AuthContext } from "context";
 import {
   fetchUserInfo,
   resetStatus,
@@ -22,6 +22,7 @@ export const UserAccount = () => {
   const navigate = useNavigate();
 
   const [saveBtn, setSaveBtn] = useState(false);
+  const [reset, setReset] = useState(false);
   const [userDataInfo, setUserDataInfo] = useState({
     Login: "",
     "E-mail": "",
@@ -34,21 +35,20 @@ export const UserAccount = () => {
 
   useEffect(() => {
     if (!Object.keys(userInfo).length) dispatch(fetchUserInfo());
+
     setUserDataInfo({
-      Login: userInfo.name || "",
+      Login: userInfo.name,
       "E-mail": userInfo.email,
-      Details: userInfo.details || "",
-      "Extra detail": userInfo.extra_details || "",
-      Profession: userInfo.profession || "",
-      Skills: userInfo.skills || "",
+      Details: userInfo.details,
+      "Extra detail": userInfo.extra_details,
+      Profession: userInfo.profession,
+      Skills: userInfo.skills,
       Created: new Date(userInfo.dateCreated).toLocaleString(),
     });
-    if (!logged) navigate("/home");
 
-    return () => {
-      dispatch(resetStatus());
-    };
-  }, [userInfo, logged]);
+    if (!logged) navigate("/home");
+    if (reset) setReset(false);
+  }, [userInfo, logged, reset]);
 
   const newInfoHandler = () => {
     dispatch(
@@ -62,10 +62,19 @@ export const UserAccount = () => {
       })
     );
     setSaveBtn(false);
+    setTimeout(() => {
+      dispatch(resetStatus());
+    }, 4000);
+  };
+
+  const resetHandler = () => {
+    setReset(true);
+    setSaveBtn(false);
   };
 
   return (
     <UserAccountLayout
+      reset={resetHandler}
       userName={userInfo.name}
       userDataInfo={userDataInfo}
       editUserData={setUserDataInfo}

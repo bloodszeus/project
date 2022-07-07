@@ -1,6 +1,6 @@
 import React from "react";
-import { LikeButton } from "../../../components/LikeBtn";
-import { PostItem } from "../../../components/PostItem";
+import { LikeButton } from "components/LikeBtn";
+import { PostItem } from "components/PostItem";
 import { ActionBtn } from "../style";
 
 export const UserPosts = ({

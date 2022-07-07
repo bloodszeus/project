@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Input } from "../../components/Input";
-import { SelectPostValue } from "../../constants/SelectPostValue";
+import { Input } from "components/Input";
+import { SelectPostValue } from "constants/SelectPostValue";
 import { Header, Param } from "./style";
-import { Loader } from "../../components/Loader";
-import { Button } from "../../components/Button";
-import { CreatePostModal } from "../../components/CreatePostModal";
+import { Loader } from "components/Loader";
+import { Button } from "components/Button";
+import { CreatePostModal } from "components/CreatePostModal";
 import { Posts } from "./components/Posts";
 
 export const PostListLayout = ({

@@ -1,5 +1,6 @@
 import React from "react";
-import { CancelBtn, ConfirmBtn, SvgBtn } from "../UserInfoItem/style";
+import { Icons } from "components/Icons";
+import { Btn } from "../UserInfoItem/style";
 import { StyledInput, Wrapper } from "./style";
 
 export const EditInfo = ({
@@ -8,7 +9,6 @@ export const EditInfo = ({
   changeHandler,
   blur,
   confirm,
-  editBtn,
   setEditBtn,
   disabledName,
 }) => {
@@ -22,13 +22,13 @@ export const EditInfo = ({
         onBlur={() => blur(false)}
         onChange={changeHandler}
       />
-      <SvgBtn onMouseDown={confirm}>
-        <ConfirmBtn />
-      </SvgBtn>
+      <Btn onMouseDown={confirm}>
+        <Icons name={"Confirm"} size={20} />
+      </Btn>
       {disabledName && (
-        <SvgBtn onClick={() => setEditBtn(false)}>
-          <CancelBtn />
-        </SvgBtn>
+        <Btn onClick={() => setEditBtn(false)}>
+          <Icons name={"Cancel"} />
+        </Btn>
       )}
     </Wrapper>
   );

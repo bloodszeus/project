@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context";
-import { useValid } from "../../hooks/useValid";
+import { AuthContext } from "context";
+import { useValid } from "hooks/useValid";
 import { SignInLayout } from "./SignInLayout";
 import { validate } from "./validate";
-import { SignInApi } from "../../API/api";
+import { SignInApi } from "API/api";
 
 export const SignIn = () => {
   const { setLogged } = useContext(AuthContext);

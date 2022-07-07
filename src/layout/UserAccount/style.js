@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { ReactComponent as loader } from "./loader.svg";
 import { motion } from "framer-motion";
+import { Icons } from "components/Icons";
+import { Btn } from "./components/UserInfoItem/style";
 
 export const Wrapper = styled.div`
   height: 100vh;
@@ -14,6 +15,24 @@ export const Body = styled.div`
     text-align: center;
     margin: 0 auto 30px;
   }
+`;
+
+export const ResetBtn = styled(motion.button).attrs(() => ({
+  initial: { opacity: 0, y: -10 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -10 },
+  transition: { duration: 0.3 },
+}))`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  margin: 5px;
+  padding: 0;
+  position: absolute;
+  left: 90px;
+  top: 5px;
 `;
 
 export const HeaderWrapper = styled.div`
@@ -36,9 +55,7 @@ export const UserCardHeader = styled.span`
   text-decoration: underline;
   text-align: center;
 `;
-export const EditLoader = styled(loader)`
-  height: 30px;
-  width: 30px;
+export const EditLoader = styled(Icons)`
   bottom: -5px;
   left: 10px;
   position: absolute;

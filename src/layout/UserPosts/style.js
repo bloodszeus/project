@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Button } from "../../components/Button";
-import { Like } from "../../components/LikeBtn/style";
+import { Button } from "components/Button";
 
 export const Body = styled.div`
   height: auto;

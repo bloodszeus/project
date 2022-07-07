@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AuthContext } from "../../context";
-import { resetUser, userData } from "../../store/userSlice";
+import { AuthContext } from "context";
+import { resetUser, userData } from "store/userSlice";
 import { HeaderLayout } from "./HeaderLayout";
 
 export const Header = () => {

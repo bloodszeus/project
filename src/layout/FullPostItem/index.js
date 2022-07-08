@@ -8,7 +8,7 @@ import {
   postStatus,
   stateReset,
   statusReset,
-} from "../../store/FullPostSlice";
+} from "store/FullPostSlice";
 import { FullPostItemLayout } from "./FullPostItemLayout";
 
 export const FullPostItem = () => {

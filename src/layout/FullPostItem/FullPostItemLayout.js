@@ -1,7 +1,7 @@
 import React from "react";
-import { PostItem } from "../../components/PostItem";
+import { PostItem } from "components/PostItem";
 import { Header } from "../Header";
-import { Loader } from "../../components/Loader";
+import { Loader } from "components/Loader";
 
 export const FullPostItemLayout = ({ postData, status, error }) => {
   return (

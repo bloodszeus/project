@@ -14,9 +14,8 @@ import {
   Wrapper,
 } from "./style";
 
-import { Input } from "../../components/Input";
-import { SignInInput } from "../../constants/SignInInfo";
-import { Link } from "react-router-dom";
+import { Input } from "components/Input";
+import { SignInInput } from "constants/SignInInfo";
 
 export const SignInLayout = ({
   onSubmit,

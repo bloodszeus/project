@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { PostListLayout } from "./PostListLayout";
-import { fetchPosts, setLike } from "../../API/api";
-import { AuthContext } from "../../context";
+import { fetchPosts, setLike } from "API/api";
+import { AuthContext } from "context";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { deletePostById, updatePostById } from "../../store/UserPostSlice";
+import { deletePostById } from "store/UserPostSlice";
 
 export const PostList = () => {
   const [posts, setPosts] = useState([]);

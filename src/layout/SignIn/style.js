@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "../../components/Button";
+import { Button } from "components/Button";
 import { motion } from "framer-motion";
 
 export const Wrapper = styled.div`

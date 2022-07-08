@@ -1,7 +1,8 @@
-import { CreatePostModal } from "../../components/CreatePostModal";
-import { Loader } from "../../components/Loader";
+import { CreatePostModal } from "components/CreatePostModal";
+import { Loader } from "components/Loader";
 import { Header } from "../Header";
 import { UserPosts } from "./components/UserPosts";
+
 import { Body } from "./style";
 
 export const UserPostsLayout = ({

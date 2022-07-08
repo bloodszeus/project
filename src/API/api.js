@@ -1,10 +1,9 @@
 import { axiosConfig } from ".";
 
-export const SignInValidApi = async (email, password) => {
+export const SignInValidApi = async (userData) => {
   try {
     const response = await axiosConfig.post("/auth", {
-      email,
-      password,
+      ...userData,
     });
     const token = response.data.token;
     localStorage.setItem("authToken", token);
@@ -23,12 +22,10 @@ export const SignInApi = async () => {
   }
 };
 
-export const SignUpValidApi = async ({ email, name, password }) => {
+export const SignUpValidApi = async (userData) => {
   try {
     await axiosConfig.post("/users", {
-      email,
-      name,
-      password,
+      ...userData,
     });
   } catch (err) {
     console.log(err.response);
@@ -47,9 +44,7 @@ export const fetchPosts = async (limit, search) => {
     return response;
   } catch (err) {
     if (err.response) {
-      console.log(err.response.data);
-      console.log(err.response.status);
-      console.log(err.response.headers);
+      console.log(err.response);
     } else {
       console.log(`Error: ${err.massage}`);
     }
@@ -70,11 +65,9 @@ export const deletePostApi = async (id) => {
   }
 };
 
-export const createNewPostAPI = async (title, fullText, description) => {
+export const createNewPostAPI = async ({ data }) => {
   const response = await axiosConfig.post("/posts", {
-    title,
-    fullText,
-    description,
+    ...data,
   });
   return response;
 };
@@ -94,11 +87,10 @@ export const setLike = async (postId) => {
   return response;
 };
 
-export const editPost = async (postId, title, fullText, description) => {
+export const editPost = async ({ userData }) => {
+  const { postId, ...content } = userData;
   const response = await axiosConfig.patch(`/posts/${postId}`, {
-    title,
-    fullText,
-    description,
+    ...content,
   });
   return response;
 };
@@ -106,4 +98,12 @@ export const editPost = async (postId, title, fullText, description) => {
 export const getUserData = async (userId) => {
   const response = await axiosConfig.get(`/users/${userId}`);
   return response.data;
+};
+
+export const updateUserData = async ({ newData }) => {
+  const { userId, ...options } = newData;
+  const response = await axiosConfig.patch(`/users/${userId}`, {
+    ...options,
+  });
+  return response;
 };

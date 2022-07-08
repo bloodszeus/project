@@ -4,14 +4,13 @@ import {
   deletePostApi,
   editPost,
   fetchPostsByUserId,
-} from "../API/api";
+} from "API/api";
 
 export const fetchNewPost = createAsyncThunk(
   "userPosts/fetchNewPost",
-  async (userData, { rejectWithValue, dispatch }) => {
-    const { title, fullText, description } = userData;
+  async (data, { rejectWithValue, dispatch }) => {
     try {
-      const response = await createNewPostAPI(title, fullText, description);
+      const response = await createNewPostAPI({ data });
       dispatch(setPost(response.data));
       return response?.data;
     } catch (err) {
@@ -51,12 +50,9 @@ export const fetchPostByUserId = createAsyncThunk(
 export const updatePostById = createAsyncThunk(
   "userPosts/updatePostById",
   async (userData, { rejectWithValue }) => {
-    const { postId, title, fullText, description } = userData;
     try {
-      const response = await editPost(postId, title, fullText, description);
-      console.log(response);
+      const response = await editPost({ userData });
     } catch (err) {
-      console.log(err.response);
       return rejectWithValue(
         err.response?.data?.error[0]?.message || err.response?.data?.error
       );

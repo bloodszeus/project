@@ -1,5 +1,5 @@
 import React from "react";
-import { NewPost } from "../../components/NewPost";
+import { NewPost } from "components/NewPost";
 import { Body, FormWrapper, Wrapper } from "./style";
 import { Header } from "../Header";
 

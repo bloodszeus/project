@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const Background = styled.div`
-  z-index: 10;
+  z-index: 150;
   height: 100vh;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.6);

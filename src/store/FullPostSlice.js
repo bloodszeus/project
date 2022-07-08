@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getPostById } from "../API/api";
+import { getPostById } from "API/api";
 
 export const getPostApi = createAsyncThunk(
   "post/getPostApi",

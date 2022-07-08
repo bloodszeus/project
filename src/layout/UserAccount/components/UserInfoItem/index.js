@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Icons } from "components/Icons";
 import { EditInfo } from "../EditInfo";
 import { Btn, PropName, PropValue, TitleBlock, Wrapper } from "./style";
@@ -10,12 +10,20 @@ export const UserInfoItem = ({
   userDataInfo,
   setSave,
 }) => {
-  const disabledName = name !== "E-mail" && name !== "Created";
+  const [editBtn, setEditBtn] = useState(false);
+
+  const disabledName = useMemo(
+    () => name !== "E-mail" && name !== "Created",
+    [name]
+  );
+  const editPossibility = useMemo(
+    () => !editBtn && disabledName,
+    [editBtn, disabledName]
+  );
+
   const [edit, setEdit] = useState({
     [name]: "",
   });
-
-  const [editBtn, setEditBtn] = useState(false);
 
   const confirm = (e) => {
     e.stopPropagation();
@@ -38,13 +46,13 @@ export const UserInfoItem = ({
     <Wrapper>
       <TitleBlock>
         <PropName>{name}</PropName>
-        {!editBtn && disabledName && (
+        {editPossibility && (
           <Btn onClick={() => setEditBtn(true)}>
             <Icons name={"EditPen"} />
           </Btn>
         )}
       </TitleBlock>
-      {!editBtn && disabledName && (
+      {editPossibility && (
         <PropValue onDoubleClick={() => setEditBtn(true)}>{info}</PropValue>
       )}
       {!editBtn && !disabledName && <PropValue>{info}</PropValue>}

@@ -102,7 +102,6 @@ export const getUserData = async (userId) => {
 
 export const updateUserData = async ({ newData }) => {
   const { userId, ...options } = newData;
-  console.log(userId, options, "api");
   const response = await axiosConfig.patch(`/users/${userId}`, {
     ...options,
   });

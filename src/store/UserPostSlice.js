@@ -52,9 +52,7 @@ export const updatePostById = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await editPost({ userData });
-      console.log(response);
     } catch (err) {
-      console.log(err.response);
       return rejectWithValue(
         err.response?.data?.error[0]?.message || err.response?.data?.error
       );

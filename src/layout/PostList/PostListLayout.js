@@ -7,6 +7,7 @@ import { Loader } from "components/Loader";
 import { Button } from "components/Button";
 import { CreatePostModal } from "components/CreatePostModal";
 import { Posts } from "./components/Posts";
+import { Pagination } from "components/Pagination";
 
 export const PostListLayout = ({
   posts,
@@ -20,6 +21,8 @@ export const PostListLayout = ({
   showPost,
   deletePost,
   editPost,
+  limitPost,
+  setSkip,
 }) => {
   return (
     <>
@@ -58,6 +61,12 @@ export const PostListLayout = ({
       ) : (
         <Loader />
       )}
+      <Pagination
+        total={limitResponse}
+        limit={limitPost}
+        setSkip={setSkip}
+        search={Search}
+      />
 
       {!Search && <Button onClick={showMore}>Show more</Button>}
 

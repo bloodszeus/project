@@ -33,12 +33,13 @@ export const SignUpValidApi = async (userData) => {
   }
 };
 
-export const fetchPosts = async (limit, search) => {
+export const fetchPosts = async (limit, search, skip) => {
   try {
     const response = await axiosConfig.get("/posts", {
       params: {
         limit: limit,
         search: search,
+        skip: skip,
       },
     });
     return response;

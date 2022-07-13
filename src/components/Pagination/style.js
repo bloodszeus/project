@@ -6,7 +6,36 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const PageBtn = styled.button`
+export const ArrowBtn = styled.button`
+  height: 25px;
+  width: 25px;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: transparent;
+`;
+
+export const Dots = styled.div`
+  height: 25px;
+  width: 25px;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background: transparent;
+  font-weight: bold;
+  line-height: 1;
+  cursor: default;
+  color: grey;
+`;
+
+export const PageButton = styled.button`
   height: 25px;
   width: 25px;
   margin: 5px;

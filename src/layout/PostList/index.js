@@ -13,6 +13,7 @@ export const PostList = () => {
   const [showModal, setShowModal] = useState(false);
   const [limitResponse, setLimitResponse] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [skip, setSkip] = useState(0);
   const { logged } = useContext(AuthContext);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -38,15 +39,17 @@ export const PostList = () => {
 
   useEffect(() => {
     (async () => {
-      const response = await fetchPosts(limit, search);
+      const response = await fetchPosts(limit, search, skip);
       if (response) setIsLoading(true);
       setPosts(response?.data?.data || []);
       setLimitResponse(response?.data?.pagination?.total || 0);
     })();
-  }, [limit, search]);
+  }, [limit, search, skip]);
 
   return (
     <PostListLayout
+      setSkip={setSkip}
+      limitPost={limit}
       editPost={editPostHandler}
       deletePost={deletePostHandler}
       showPost={showPostHandler}

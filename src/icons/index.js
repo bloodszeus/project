@@ -3,3 +3,5 @@ export { ReactComponent as EditPen } from "./edit_pen.svg";
 export { ReactComponent as Confirm } from "./confirm.svg";
 export { ReactComponent as Cancel } from "./cancel.svg";
 export { ReactComponent as Reset } from "./reset.svg";
+export { ReactComponent as PrevArrow } from "./prevArrow.svg";
+export { ReactComponent as NextArrow } from "./nextArrow.svg";

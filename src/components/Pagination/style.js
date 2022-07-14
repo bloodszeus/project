@@ -17,6 +17,11 @@ export const ArrowBtn = styled.button`
   align-items: center;
   cursor: pointer;
   background: transparent;
+  transition: all 0.5s;
+  :disabled {
+    cursor: default;
+    opacity: 0;
+  }
 `;
 
 export const Dots = styled.div`

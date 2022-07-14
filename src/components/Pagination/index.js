@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PaginationLayout } from "./PaginationLayout";
 
 import _ from "lodash";
@@ -6,7 +6,7 @@ import { PageButton } from "./style";
 
 export const Pagination = ({ total, limit, setSkip, search }) => {
   const pagesCount = Math.ceil(total / limit);
-  const [currentPage, setCurrentPage] = useState(7);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const skip = limit * (currentPage - 1);
@@ -22,12 +22,14 @@ export const Pagination = ({ total, limit, setSkip, search }) => {
     pages.push(i);
   }
 
-  const centerRange = _.filter(
-    pages,
-    (i) => i >= currentPage - 1 && i < currentPage + 2
-  );
-  const startRange = _.take(pages, 4);
-  const endRange = _.takeRight(pages, 4);
+  const centerRange = _.filter(pages, function (i) {
+    if (currentPage >= 4 && currentPage <= pagesCount - 3)
+      return i >= currentPage - 1 && i < currentPage + 2;
+    if (currentPage < 4) return i <= currentPage + 3 && i <= 4;
+    if (currentPage > pagesCount - 3)
+      return i >= currentPage - 3 && i >= pagesCount - 3;
+  });
+
   const first = _.take(pages, 1);
   const last = _.takeRight(pages, 1);
 
@@ -55,17 +57,14 @@ export const Pagination = ({ total, limit, setSkip, search }) => {
 
   return (
     <PaginationLayout
-      endRange={endRange}
       renderedBtn={renderedBtn}
       first={first}
       last={last}
-      btnStart={startRange}
       btnCenter={centerRange}
       pagesCount={pagesCount}
       prevPage={handlePrevPage}
       nextPage={handleNextPage}
       totalPages={pages}
-      setCurrentPage={setCurrentPage}
       currPage={currentPage}
     />
   );

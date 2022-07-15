@@ -5,14 +5,7 @@ import { PostItem } from "components/PostItem";
 import { userData } from "store/userSlice";
 import { ActionBtn } from "./style";
 
-export const Posts = ({
-  item,
-  index,
-  setLike,
-  showPost,
-  deletePost,
-  editPost,
-}) => {
+export const Posts = ({ item, setLike, showPost, deletePost, editPost }) => {
   const [ownPost, setOwnPost] = useState(false);
   const user = useSelector(userData);
 
@@ -23,12 +16,7 @@ export const Posts = ({
   }, []);
 
   return (
-    <PostItem
-      title={item.title}
-      text={item.description}
-      index={index + 1}
-      id={item._id}
-    >
+    <PostItem title={item.title} text={item.description} id={item._id}>
       {ownPost && (
         <>
           <ActionBtn onClick={() => deletePost(item._id)}>Delete</ActionBtn>

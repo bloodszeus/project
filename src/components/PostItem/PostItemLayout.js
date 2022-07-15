@@ -1,16 +1,23 @@
 import React from "react";
-import { Buttons, Post } from "./style";
+import { Buttons, Img, Post, PostHeader, PostText } from "./style";
 
-export const PostItemLayout = ({ fullText, children, dateCreated, props }) => {
+export const PostItemLayout = ({
+  fullText,
+  children,
+  dateCreated,
+  img,
+  props,
+}) => {
   return (
     <Post>
       <div>
-        <span>{`${props.index}. `}</span>
-        <strong>{props.title}</strong>
-        <p>{props.text}</p>
-        <p>{fullText}</p>
+        <Img src={img} alt="img"></Img>
+        <PostHeader>{props.title}</PostHeader>
+        <PostText>{props.text}</PostText>
+        <PostText>{fullText}</PostText>
         <p>{dateCreated}</p>
       </div>
+
       <Buttons>{children}</Buttons>
     </Post>
   );

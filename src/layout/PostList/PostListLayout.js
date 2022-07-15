@@ -47,10 +47,9 @@ export const PostListLayout = ({
       </select>
 
       {isLoading ? (
-        posts.map((item, index) => (
+        posts.map((item) => (
           <Posts
             item={item}
-            index={index}
             key={item._id}
             setLike={setLike}
             showPost={showPost}

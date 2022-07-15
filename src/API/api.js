@@ -1,3 +1,4 @@
+import axios from "axios";
 import { axiosConfig } from ".";
 
 export const SignInValidApi = async (userData) => {
@@ -107,4 +108,8 @@ export const updateUserData = async ({ newData }) => {
     ...options,
   });
   return response;
+};
+
+export const postImage = async () => {
+  return await fetch("https://picsum.photos/400/?random=50");
 };

@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { PaginationLayout } from "./PaginationLayout";
 
 import _ from "lodash";
 import { PageButton } from "./style";
 
-export const Pagination = ({ total, limit, setSkip, search }) => {
+export const Pagination = ({
+  total,
+  limit,
+  setSkip,
+  search,
+  currentPage,
+  setCurrentPage,
+}) => {
   const pagesCount = Math.ceil(total / limit);
-  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const skip = limit * (currentPage - 1);
-    setSkip(skip);
+    setSkip((prevState) => ({ ...prevState, skip: skip }));
   }, [currentPage]);
 
   useEffect(() => {

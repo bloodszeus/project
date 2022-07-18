@@ -1,5 +1,6 @@
 export const SelectPostValue = [
-  { value: "10" },
-  { value: "30" },
-  { value: "50" },
+  { value: 9 },
+  { value: 12 },
+  { value: 30 },
+  { value: 50 },
 ];

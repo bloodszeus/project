@@ -1,20 +1,11 @@
 import { CreatePostModal } from "components/CreatePostModal";
 import { Loader } from "components/Loader";
+import { PostItem } from "components/PostItem";
 import { Header } from "../Header";
-import { UserPosts } from "./components/UserPosts";
 
-import { Body } from "./style";
+import { Body, PostsWrapper } from "./style";
 
-export const UserPostsLayout = ({
-  posts,
-  deletePost,
-  status,
-  showPost,
-  pathError,
-  userId,
-  setLike,
-  editPost,
-}) => {
+export const UserPostsLayout = ({ posts, status, pathError }) => {
   return (
     <>
       <Header />
@@ -22,18 +13,20 @@ export const UserPostsLayout = ({
         <CreatePostModal />
 
         {status === "succeeded" ? (
-          posts.map((post, index) => (
-            <UserPosts
-              editPost={editPost}
-              post={post}
-              index={index}
-              showPost={showPost}
-              deletePost={deletePost}
-              setLike={setLike}
-              userId={userId}
-              key={post._id}
-            />
-          ))
+          <PostsWrapper>
+            {posts.map((post) => (
+              <PostItem
+                title={post.title}
+                text={post.description}
+                id={post._id}
+                post={post}
+                posts={posts}
+                key={post._id}
+                dateCreated={post.dateCreated}
+                shorter={true}
+              />
+            ))}
+          </PostsWrapper>
         ) : status === "loading" ? (
           <Loader />
         ) : null}

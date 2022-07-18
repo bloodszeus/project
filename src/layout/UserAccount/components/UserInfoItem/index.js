@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Icons } from "components/Icons";
 import { EditInfo } from "../EditInfo";
-import { Btn, PropName, PropValue, TitleBlock, Wrapper } from "./style";
+import { Avatar, Btn, PropName, PropValue, TitleBlock, Wrapper } from "./style";
 
 export const UserInfoItem = ({
   name,

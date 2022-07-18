@@ -1,76 +1,104 @@
 import React from "react";
 
-import { Input } from "components/Input";
 import { SelectPostValue } from "constants/SelectPostValue";
-import { Header, Param } from "./style";
+import {
+  Header,
+  Param,
+  PostsWrapper,
+  Search,
+  SelectBlock,
+  ShowBy,
+  ShowMoreBtn,
+  ViewSetting,
+} from "./style";
 import { Loader } from "components/Loader";
-import { Button } from "components/Button";
 import { CreatePostModal } from "components/CreatePostModal";
-import { Posts } from "./components/Posts";
 import { Pagination } from "components/Pagination";
+import { PostItem } from "components/PostItem";
+import { ScrollToTopBtn } from "components/ScrollToTopBtn";
+import { Icons } from "components/Icons";
 
 export const PostListLayout = ({
   posts,
   limit,
   search,
-  limitResponse,
+  totalPages,
   isLoading,
-  showMore,
-  Search,
-  setLike,
-  showPost,
-  deletePost,
-  editPost,
+  handleSearch,
   limitPost,
   setSkip,
+  setPosts,
+  currentPage,
+  setCurrentPage,
+  showMore,
+  firstLoad,
 }) => {
   return (
     <>
       <CreatePostModal />
 
       <Header>Posts</Header>
+      {/* {!isLoading && <Loader />} */}
 
-      <Input
-        onChange={search}
-        label={"Search"}
-        type={"text"}
-        id={"search"}
-        placeholder={"Enter title or description"}
+      <Search
+        onChange={handleSearch}
+        type="text"
+        placeholder="Search by title or description"
       />
-      <Param>Show by</Param>
-      <select onChange={limit}>
-        {SelectPostValue.map((item) => (
-          <option value={item.value} key={item.value}>
-            {item.value}
-          </option>
-        ))}
-      </select>
+      <ViewSetting>
+        <SelectBlock>
+          {!search && (
+            <>
+              <Param>Show by</Param>
+              <ShowBy onChange={limit}>
+                {SelectPostValue.map((item) => (
+                  <option value={item.value} key={item.value}>
+                    {item.value}
+                  </option>
+                ))}
+              </ShowBy>
+            </>
+          )}
+        </SelectBlock>
 
-      {isLoading ? (
-        posts.map((item, index) => (
-          <Posts
-            item={item}
-            index={index}
-            key={item._id}
-            setLike={setLike}
-            showPost={showPost}
-            deletePost={deletePost}
-            editPost={editPost}
-          />
-        ))
+        <Pagination
+          total={totalPages}
+          limit={limitPost}
+          setSkip={setSkip}
+          search={search}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      </ViewSetting>
+
+      {firstLoad ? (
+        <PostsWrapper>
+          {posts.map((post) => (
+            <PostItem
+              title={post.title}
+              text={post.description}
+              id={post._id}
+              post={post}
+              setPosts={setPosts}
+              posts={posts}
+              key={post._id}
+              dateCreated={post.dateCreated}
+              shorter={true}
+            ></PostItem>
+          ))}
+        </PostsWrapper>
       ) : (
         <Loader />
       )}
-      <Pagination
-        total={limitResponse}
-        limit={limitPost}
-        setSkip={setSkip}
-        search={Search}
-      />
 
-      {!Search && <Button onClick={showMore}>Show more</Button>}
+      {posts.length === limitPost && (
+        <ShowMoreBtn onClick={() => showMore()}>
+          <Icons name={"ShowMorePost"} size={30} />
+        </ShowMoreBtn>
+      )}
 
-      {!limitResponse && isLoading ? <Header> Posts not found</Header> : ""}
+      {!posts.length && isLoading ? <Header> Posts not found</Header> : ""}
+      <ScrollToTopBtn />
     </>
   );
 };

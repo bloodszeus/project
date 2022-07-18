@@ -27,6 +27,8 @@ export const FullPostItem = () => {
     };
   }, []);
 
+  console.log(postData);
+
   return (
     <FullPostItemLayout postData={postData} status={status} error={error} />
   );

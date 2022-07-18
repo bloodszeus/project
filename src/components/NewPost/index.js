@@ -15,6 +15,7 @@ export const NewPost = ({
   error,
   edit,
   setPostData,
+  confirmText,
 }) => {
   const formRef = useRef();
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ export const NewPost = ({
 
   return (
     <NewPostLayout
+      confirmText={confirmText}
       goBack={goBackHandler}
       edit={edit}
       submit={submit}

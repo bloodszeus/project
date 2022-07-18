@@ -5,6 +5,7 @@ import {
   editPost,
   fetchPostsByUserId,
 } from "API/api";
+import { removePost } from "./AllPostSlice";
 
 export const fetchNewPost = createAsyncThunk(
   "userPosts/fetchNewPost",
@@ -28,6 +29,7 @@ export const deletePostById = createAsyncThunk(
     try {
       await deletePostApi(id);
       dispatch(deletePost(id));
+      dispatch(removePost(id));
     } catch (err) {
       return rejectWithValue(err.response);
     }
@@ -51,7 +53,7 @@ export const updatePostById = createAsyncThunk(
   "userPosts/updatePostById",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await editPost({ userData });
+      await editPost({ userData });
     } catch (err) {
       return rejectWithValue(
         err.response?.data?.error[0]?.message || err.response?.data?.error
@@ -80,7 +82,7 @@ const userPostSlice = createSlice({
     reset: (state) => {
       state.status = initialState.status;
       state.error = initialState.error;
-      state.editPostStatus = initialState.staeditPostStatustus;
+      state.editPostStatus = initialState.editPostStatus;
       state.EditPostError = initialState.EditPostError;
     },
     resetPost: (state) => {

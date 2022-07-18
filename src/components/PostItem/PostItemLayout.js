@@ -1,17 +1,77 @@
-import React from "react";
-import { Buttons, Post } from "./style";
+import { Icons } from "components/Icons";
+import { LikeButton } from "components/LikeBtn";
+import { formatDistance, subDays } from "date-fns";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
-export const PostItemLayout = ({ fullText, children, dateCreated, props }) => {
+import React from "react";
+import {
+  ActionBtn,
+  ActionBtnWrapper,
+  Buttons,
+  Img,
+  Post,
+  PostHeader,
+  PostText,
+  Time,
+} from "./style";
+
+export const PostItemLayout = ({
+  img,
+  handleLike,
+  showPost,
+  deletePost,
+  editPost,
+  ownPost,
+  shorter,
+  full,
+  props,
+}) => {
   return (
-    <Post>
+    <Post full={full}>
       <div>
-        <span>{`${props.index}. `}</span>
-        <strong>{props.title}</strong>
-        <p>{props.text}</p>
-        <p>{fullText}</p>
-        <p>{dateCreated}</p>
+        <Img
+          placeholderSrc={
+            "https://i.picsum.photos/id/1022/400/400.jpg?hmac=V4xBNyXzQdcn-vop4loRbXZAZb_vgZiwAdJdxjpjhEc"
+          }
+          effect="blur"
+          src={img}
+        />
+
+        <PostHeader>
+          {shorter && props.title.length > 42
+            ? `${props.title.substring(0, 40)}...`
+            : props.title}
+        </PostHeader>
+        <PostText>
+          {shorter && props.text.length > 30
+            ? `${props.text.substring(0, 30)}...`
+            : props.text}
+        </PostText>
+        <PostText>{props.fullText}</PostText>
       </div>
-      <Buttons>{children}</Buttons>
+      <Buttons>
+        <LikeButton post={props.post} setLike={handleLike} />
+        <ActionBtnWrapper>
+          <ActionBtn onClick={() => showPost(props.id)}>
+            <Icons name={"ShowMore"} size={40} />
+          </ActionBtn>
+          {ownPost && (
+            <>
+              <ActionBtn onClick={() => editPost(props.id)}>
+                <Icons name={"EditPost"} size={25} />
+              </ActionBtn>
+              <ActionBtn onClick={() => deletePost(props.id)}>
+                <Icons name={"DeletePost"} size={25} />
+              </ActionBtn>
+            </>
+          )}
+        </ActionBtnWrapper>
+      </Buttons>
+      <Time>
+        {formatDistance(subDays(Date.parse(props.dateCreated), 0), Date.now(), {
+          addSuffix: true,
+        })}
+      </Time>
     </Post>
   );
 };

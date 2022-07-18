@@ -25,3 +25,14 @@ export const BtnWrapper = styled.div`
 export const ActionBtn = styled(Button)`
   margin-bottom: 5px;
 `;
+
+export const PostsWrapper = styled.div`
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(3, 33.33%);
+  grid-gap: 1em;
+  margin-top: 20px;
+  justify-items: center;
+  justify-content: center;
+  padding: 40px;
+`;

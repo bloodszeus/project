@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Icons } from "components/Icons";
-import { Btn } from "./components/UserInfoItem/style";
 
 export const Wrapper = styled.div`
   height: 100vh;
@@ -13,7 +12,7 @@ export const Body = styled.div`
   h2 {
     word-wrap: break-word;
     text-align: center;
-    margin: 0 auto 30px;
+    margin: 0 auto 10px;
   }
 `;
 
@@ -104,4 +103,12 @@ export const SaveBtn = styled(motion.button).attrs(() => ({
     color: lightgreen;
     background-color: rgba(69, 186, 67, 1);
   }
+`;
+
+export const Avatar = styled.img`
+  display: block;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin: 0 auto;
 `;

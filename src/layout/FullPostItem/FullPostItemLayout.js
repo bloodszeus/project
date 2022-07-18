@@ -9,15 +9,16 @@ export const FullPostItemLayout = ({ postData, status, error }) => {
       <Header />
 
       {status === "succeeded" ? (
-        postData.map((post, index) => (
+        postData.map((post) => (
           <PostItem
-            key={index}
-            index={index + 1}
+            key={post._id}
             title={post.title}
             text={post.description}
             dateCreated={new Date(post.dateCreated).toLocaleString()}
             fullText={post.fullText}
             id={post._id}
+            post={post}
+            full={true}
           />
         ))
       ) : status === "loading" ? (

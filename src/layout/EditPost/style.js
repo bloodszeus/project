@@ -6,19 +6,38 @@ export const Body = styled.div`
 
 export const Wrapper = styled.div`
   margin: 20px 50px auto;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   h2 {
-    background: -webkit-linear-gradient(
-      106deg,
-      rgba(255, 235, 6, 1) 40%,
-      rgba(171, 33, 15, 1) 55%,
-      rgba(171, 33, 15, 1) 57%
+    text-transform: uppercase;
+    /* text-align: center; */
+    margin: 10px auto 0;
+    background-image: linear-gradient(
+      -225deg,
+      #231557 0%,
+      #44107a 29%,
+      #ff1361 67%,
+      #fff800 100%
     );
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 200% auto;
+    color: #fff;
+    background-clip: text;
+    text-fill-color: transparent;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: textclip 2s linear infinite;
+    display: inline-block;
+    font-size: 30px;
+  }
 
-    text-align: center;
-    margin: 10px auto 0;
+  @keyframes textclip {
+    to {
+      background-position: 200% center;
+    }
   }
 `;
 

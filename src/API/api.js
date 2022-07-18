@@ -33,22 +33,15 @@ export const SignUpValidApi = async (userData) => {
   }
 };
 
-export const fetchPosts = async (limit, search, skip) => {
+export const fetchPosts = async ({ params }) => {
   try {
     const response = await axiosConfig.get("/posts", {
       params: {
-        limit: limit,
-        search: search,
-        skip: skip,
+        ...params,
       },
     });
     return response;
   } catch (err) {
-    if (err.response) {
-      console.log(err.response);
-    } else {
-      console.log(`Error: ${err.massage}`);
-    }
     return err.response;
   }
 };
@@ -107,4 +100,8 @@ export const updateUserData = async ({ newData }) => {
     ...options,
   });
   return response;
+};
+
+export const postImage = async () => {
+  return await fetch("https://picsum.photos/400/?random=50");
 };

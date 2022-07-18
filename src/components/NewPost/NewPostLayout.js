@@ -1,3 +1,4 @@
+import { Icons } from "components/Icons";
 import React from "react";
 import { Button } from "../Button";
 import { Input } from "../Input";
@@ -11,6 +12,8 @@ export const NewPostLayout = ({
   changeHandler,
   status,
   error,
+  edit,
+  goBack,
 }) => {
   return (
     <Wrapper>
@@ -43,8 +46,14 @@ export const NewPostLayout = ({
           value={"" || post.fullText}
           onChange={changeHandler}
         ></Textarea>
-        {status === "loading" ? <Loader /> : <Button>OK</Button>}
-        {status === "succeeded" && <Success>Succeeded</Success>}
+        {status !== "succeeded" && <Button>OK</Button>}
+        {status === "loading" && <Icons name={"Loader"} size={30} />}
+        {status === "succeeded" && <Success>Successfully</Success>}
+        {status === "succeeded" && edit && (
+          <Button type="button" onClick={goBack}>
+            GO BACK
+          </Button>
+        )}
         {error !== null && <Error>{error}</Error>}
       </Form>
     </Wrapper>

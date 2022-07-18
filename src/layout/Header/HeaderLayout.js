@@ -1,9 +1,10 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { HeaderRightSide, Header, LeftSide, SignUpBtn } from "./style";
+import { HeaderRightSide, Header, LeftSide, SignUpBtn, Logout } from "./style";
 
 import logo from "./logo.svg";
 import { Button } from "components/Button";
+import { Icons } from "components/Icons";
 
 export const HeaderLayout = ({ logged, logout, id }) => {
   return (
@@ -24,7 +25,9 @@ export const HeaderLayout = ({ logged, logout, id }) => {
       </HeaderRightSide>
       <LeftSide>
         {logged ? (
-          <Button onClick={logout}>Logout</Button>
+          <Logout onClick={logout}>
+            <Icons name={"Logout"} size={30} />
+          </Logout>
         ) : (
           <>
             <Link to={"/user-valid/sign-up"}>

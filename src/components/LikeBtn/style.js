@@ -2,10 +2,11 @@ import styled from "styled-components";
 import { ReactComponent as Heart } from "./heart.svg";
 
 export const Like = styled(Heart)`
-  height: 32px;
-  width: 32px;
+  height: 27px;
+  width: 27px;
+
   & path.border {
-    fill: black;
+    fill: #e53935;
   }
   & path.background {
     fill: ${(props) => (props.liked ? "red" : "transparent")};
@@ -22,7 +23,8 @@ export const LikeBlock = styled.div`
   justify-content: center;
 
   p {
+    text-shadow: 4px 4px 9px rgba(66, 68, 90, 1);
     width: 20px;
-    margin-left: 15px;
+    margin-left: 10px;
   }
 `;

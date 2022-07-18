@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { Button } from "components/Button";
 export const Header = styled.header`
   height: 70px;
-  background-color: lightgrey;
+  width: 100%;
+  background-color: #bdc3c7d6;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,11 +30,10 @@ export const HeaderRightSide = styled.div`
     list-style: none;
     display: flex;
     a {
-      color: #d46124;
+      color: rgb(33, 33, 33);
       text-decoration: none;
     }
     a.active {
-      color: red;
       text-decoration: underline;
     }
     li {
@@ -68,4 +68,11 @@ export const LeftSide = styled.div`
   a:hover {
     text-decoration: underline;
   }
+`;
+
+export const Logout = styled(Button)`
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  margin-right: 15px;
 `;

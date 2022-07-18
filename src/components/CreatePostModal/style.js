@@ -7,12 +7,13 @@ export const BtnWrapper = styled.div`
 `;
 
 export const CreatePostBtn = styled(Button)`
-  background-color: #ff6363;
-  border-radius: 5px;
-
+  background-color: #7f8c8d;
+  border-radius: 10px;
+  color: #ecf0f1;
+  transition: all 0.3s linear;
   &:hover {
-    background-color: #ff4a4a;
+    background-color: #bdc3c7;
+    color: black;
     transform: scale(1.03);
-    transition: all 0.3s;
   }
 `;

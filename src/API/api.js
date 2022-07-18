@@ -1,4 +1,3 @@
-import axios from "axios";
 import { axiosConfig } from ".";
 
 export const SignInValidApi = async (userData) => {
@@ -34,22 +33,15 @@ export const SignUpValidApi = async (userData) => {
   }
 };
 
-export const fetchPosts = async (limit, search, skip) => {
+export const fetchPosts = async ({ params }) => {
   try {
     const response = await axiosConfig.get("/posts", {
       params: {
-        limit: limit,
-        search: search,
-        skip: skip,
+        ...params,
       },
     });
     return response;
   } catch (err) {
-    if (err.response) {
-      console.log(err.response);
-    } else {
-      console.log(`Error: ${err.massage}`);
-    }
     return err.response;
   }
 };

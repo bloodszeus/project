@@ -18,7 +18,7 @@ export const EditPostLayout = ({
         <Wrapper>
           {status === "succeeded" && (
             <>
-              <h2>Editing</h2>
+              <h2>Edit Mode</h2>
               <FormWrapper>
                 <NewPost
                   error={error}
@@ -28,6 +28,7 @@ export const EditPostLayout = ({
                   descr={postData.description}
                   status={editStatus}
                   setPostData={getUpdatedData}
+                  edit={true}
                 />
               </FormWrapper>
             </>

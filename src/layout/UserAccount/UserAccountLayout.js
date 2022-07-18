@@ -3,6 +3,7 @@ import { Loader } from "components/Loader";
 import { Header } from "../Header";
 import { UserInfoItem } from "./components/UserInfoItem";
 import {
+  Avatar,
   Body,
   EditLoader,
   HeaderWrapper,
@@ -36,6 +37,10 @@ export const UserAccountLayout = ({
       <Header />
       <Body>
         <h2>{`Welcome ${userName || ""}`}</h2>
+        <Avatar
+          src="https://i.picsum.photos/id/768/200/200.jpg?hmac=CZCVsqJECKhkvl5gzeCA0O5iSMmRn_RVFzVrREOE7ws"
+          alt="Avatar"
+        />
         {status === STATUS.LOADING && <Loader />}
         {status === STATUS.SUCCESS && (
           <UserCard>

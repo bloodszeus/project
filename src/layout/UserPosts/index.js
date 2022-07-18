@@ -2,7 +2,6 @@ import { useContext, useEffect } from "react";
 import { UserPostsLayout } from "./UserPostsLayout";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  deletePostById,
   fetchPostByUserId,
   userPosts,
   postsStatusById,
@@ -13,7 +12,6 @@ import { userData } from "../../store/userSlice";
 import { fetchUserInfo } from "../../store/userSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../context";
-import { setLike } from "../../API/api";
 
 export const UserPosts = () => {
   const posts = useSelector(userPosts);
@@ -30,12 +28,6 @@ export const UserPosts = () => {
   const pathError = user_id === userId._id;
   const userDataLength = Object.keys(userId).length;
 
-  const deletePost = (id) => dispatch(deletePostById(id));
-  const setLikeHandler = async (postId) => await setLike(postId);
-
-  const showPostHandler = (postId) => navigate(`/posts/post/${postId}`);
-  const editPostHandler = (postId) => navigate(`/posts/post/${postId}/editing`);
-
   useEffect(() => {
     if (!userDataLength) dispatch(fetchUserInfo());
     if (pathError) {
@@ -51,14 +43,10 @@ export const UserPosts = () => {
 
   return (
     <UserPostsLayout
-      editPost={editPostHandler}
-      setLike={setLikeHandler}
       userId={userId._id}
-      showPost={showPostHandler}
       pathError={pathError}
       status={status}
       error={error}
-      deletePost={deletePost}
       posts={posts}
     />
   );

@@ -52,9 +52,11 @@ export const PostItemLayout = ({
       <Buttons>
         <LikeButton post={props.post} setLike={handleLike} />
         <ActionBtnWrapper>
-          <ActionBtn onClick={() => showPost(props.id)}>
-            <Icons name={"ShowMore"} size={40} />
-          </ActionBtn>
+          {!full && (
+            <ActionBtn onClick={() => showPost(props.id)}>
+              <Icons name={"ShowMore"} size={40} />
+            </ActionBtn>
+          )}
           {ownPost && (
             <>
               <ActionBtn onClick={() => editPost(props.id)}>

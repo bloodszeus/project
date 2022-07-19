@@ -4,6 +4,7 @@ import { StyledLoader } from "../Loader/style";
 
 export const Wrapper = styled.div`
   width: min-content;
+  height: 420px;
   margin: 10px;
 `;
 

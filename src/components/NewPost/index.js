@@ -5,6 +5,7 @@ import { NewPostLayout } from "./NewPostLayout";
 
 import { reset } from "../../store/UserPostSlice";
 import { useNavigate } from "react-router-dom";
+import { STATUS } from "constants/LoadStatus";
 
 export const NewPost = ({
   title,
@@ -42,7 +43,7 @@ export const NewPost = ({
   useEffect(() => () => dispatch(reset()), []);
 
   useEffect(() => {
-    if (status === "succeeded") {
+    if (status === STATUS.success) {
       formRef.current.reset();
     }
     setPostData({ ...post });

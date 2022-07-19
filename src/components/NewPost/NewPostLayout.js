@@ -1,4 +1,5 @@
 import { Icons } from "components/Icons";
+import { STATUS } from "constants/LoadStatus";
 import React from "react";
 import { Button } from "../Button";
 import { Input } from "../Input";
@@ -46,10 +47,10 @@ export const NewPostLayout = ({
           value={"" || post.fullText}
           onChange={changeHandler}
         ></Textarea>
-        {status !== "succeeded" && <ConfirmBtn>{confirmText}</ConfirmBtn>}
-        {status === "loading" && <Icons name={"Loader"} size={30} />}
-        {status === "succeeded" && <Success>Successfully</Success>}
-        {status === "succeeded" && edit && (
+        {status !== STATUS.success && <ConfirmBtn>{confirmText}</ConfirmBtn>}
+        {status === STATUS.loading && <Icons name={"Loader"} size={30} />}
+        {status === STATUS.success && <Success>Successfully</Success>}
+        {status === STATUS.success && edit && (
           <Button type="button" onClick={goBack}>
             GO BACK
           </Button>

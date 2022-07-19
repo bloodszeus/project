@@ -22,7 +22,7 @@ export const PaginationLayout = ({
             <Icons name={"PrevArrow"} size={25} margin={"0px"} />
           </ArrowBtn>
 
-          {currPage > 3 && (
+          {currPage >= 4 && pagesCount > 5 && (
             <>
               {renderedBtn(first)}
               <Dots>...</Dots>
@@ -30,7 +30,7 @@ export const PaginationLayout = ({
           )}
           {renderedBtn(btnCenter)}
 
-          {currPage <= totalPages.length - 3 && (
+          {currPage <= totalPages.length - 3 && pagesCount > 5 && (
             <>
               <Dots>...</Dots>
               {renderedBtn(last)}

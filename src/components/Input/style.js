@@ -4,7 +4,7 @@ export const StyledInput = styled.input`
   width: 100%;
   padding: 7px;
   border: solid 1px ${({ error }) => (error ? "red" : "#333")};
-  font-size: inherit;
+  font: inherit;
   border-radius: 3px;
 `;
 

@@ -27,6 +27,7 @@ export const CreatePostModalLayout = ({
               setPostData={getPostData}
               status={status}
               error={error}
+              confirmText={"Create"}
             />
           ) : (
             <>

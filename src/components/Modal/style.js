@@ -28,32 +28,17 @@ export const Content = styled(motion.div).attrs(() => ({
   position: relative;
 `;
 
-export const CloseModal = styled.span`
-  position: absolute;
-  right: 15px;
-  top: 15px;
+export const CloseModal = styled.button`
+  display: block;
   width: 32px;
   height: 32px;
   opacity: 0.3;
+  margin-inline-start: auto;
   cursor: pointer;
-
+  border: none;
+  background: transparent;
+  margin-bottom: 5px;
   &:hover {
     opacity: 1;
-  }
-
-  :before,
-  :after {
-    position: absolute;
-    left: 15px;
-    content: "";
-    height: 33px;
-    width: 2px;
-    background-color: #333;
-  }
-  :before {
-    transform: rotate(45deg);
-  }
-  :after {
-    transform: rotate(-45deg);
   }
 `;

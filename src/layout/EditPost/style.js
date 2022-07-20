@@ -45,8 +45,7 @@ export const FormWrapper = styled.div`
   width: fit-content;
   height: auto;
   border: 1px solid red;
-  border-radius: 2px;
+  border-radius: 6px;
   box-shadow: 1px 9px 20px 3px rgb(225 103 103 / 56%);
-
   margin: 0 auto;
 `;

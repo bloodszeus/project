@@ -1,9 +1,8 @@
 import { Icons } from "components/Icons";
-import React from "react";
+import React, { useMemo } from "react";
 import { Button } from "../Button";
 import { Input } from "../Input";
-import { Loader } from "../Loader";
-import { Error, Form, Success, Textarea, Wrapper } from "./style";
+import { ConfirmBtn, Error, Form, Success, Textarea, Wrapper } from "./style";
 
 export const NewPostLayout = ({
   submit,
@@ -14,7 +13,29 @@ export const NewPostLayout = ({
   error,
   edit,
   goBack,
+  confirmText,
 }) => {
+  const STATUS = useMemo(() => {
+    return {
+      succeeded: <Success>Successfully</Success>,
+      loading: <Icons name={"Loader"} size={30} />,
+      edit: (
+        <>
+          <Success>Successfully</Success>
+          <ConfirmBtn type="button" onClick={goBack}>
+            GO BACK
+          </ConfirmBtn>
+        </>
+      ),
+      idle: <ConfirmBtn>{confirmText}</ConfirmBtn>,
+    };
+  }, []);
+
+  const currentStatus = useMemo(() => {
+    if (status === "succeeded" && edit) return "edit";
+    return status;
+  }, [status]);
+
   return (
     <Wrapper>
       <Form onSubmit={(e) => submit(e)} ref={formRef}>
@@ -46,14 +67,7 @@ export const NewPostLayout = ({
           value={"" || post.fullText}
           onChange={changeHandler}
         ></Textarea>
-        {status !== "succeeded" && <Button>OK</Button>}
-        {status === "loading" && <Icons name={"Loader"} size={30} />}
-        {status === "succeeded" && <Success>Successfully</Success>}
-        {status === "succeeded" && edit && (
-          <Button type="button" onClick={goBack}>
-            GO BACK
-          </Button>
-        )}
+        {STATUS[currentStatus]}
         {error !== null && <Error>{error}</Error>}
       </Form>
     </Wrapper>

@@ -29,6 +29,7 @@ export const EditPostLayout = ({
                   status={editStatus}
                   setPostData={getUpdatedData}
                   edit={true}
+                  confirmText={"confirm"}
                 />
               </FormWrapper>
             </>

@@ -105,3 +105,36 @@ export const updateUserData = async ({ newData }) => {
 export const postImage = async () => {
   return await fetch("https://picsum.photos/400/?random=50");
 };
+
+export const fetchComments = async (postId) => {
+  const response = await axiosConfig.get(`/comments/post/${postId}`);
+  return response;
+};
+
+export const commentLike = async (commentId) => {
+  await axiosConfig.put(`/comments/like/${commentId}`);
+};
+
+export const postCommentApi = async ({ allData }) => {
+  const { post_id, ...data } = allData;
+  const response = await axiosConfig.post(`/comments/post/${post_id}`, {
+    ...data,
+  });
+  return response;
+};
+
+export const deleteCommentReq = async (commentId) => {
+  await axiosConfig.delete(`/comments/${commentId}`);
+};
+
+export const patchCommentText = async ({ newData }) => {
+  const { commentId, ...data } = newData;
+  await axiosConfig.patch(`/comments/${commentId}`, {
+    ...data,
+  });
+};
+
+export const getUsernameReq = async (userId) => {
+  const response = await axiosConfig.get(`users/${userId}`);
+  return response;
+};

@@ -25,7 +25,7 @@ export const Buttons = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: ${(props) => (props.logged ? "space-between" : "flex-end")};
 `;
 
 export const ActionBtnWrapper = styled.div`
@@ -79,4 +79,12 @@ export const Time = styled.p`
   text-align: left;
   font-size: 12px;
   color: #666666;
+`;
+
+export const Author = styled.p`
+  margin: 4px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
 `;

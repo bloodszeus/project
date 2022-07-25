@@ -36,6 +36,7 @@ export const PostItem = ({ setPosts, posts, shorter, full, ...props }) => {
   const LikeHandler = async (postId) => await setLike(postId);
   const showPostHandler = (postId) => navigate(`/posts/post/${postId}`);
   const editPostHandler = (postId) => navigate(`/posts/post/${postId}/editing`);
+  const showComments = (postId) => navigate(`/posts/post/${postId}/comments`);
   const deletePostHandler = (id) => {
     dispatch(deletePostById(id));
   };
@@ -47,6 +48,7 @@ export const PostItem = ({ setPosts, posts, shorter, full, ...props }) => {
 
   return (
     <PostItemLayout
+      showComments={showComments}
       full={full}
       logged={logged}
       author={author}

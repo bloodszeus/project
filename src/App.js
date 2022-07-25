@@ -10,6 +10,7 @@ import { UserPosts } from "layout/UserPosts";
 import { FullPostItem } from "layout/FullPostItem";
 import { EditPost } from "layout/EditPost";
 import { UserAccount } from "layout/UserAccount";
+import { Comments } from "layout/Comments";
 
 export const App = () => {
   const location = useLocation();
@@ -29,6 +30,7 @@ export const App = () => {
           <Route path="user-valid/sign-up" element={<SignUp />} />
           <Route path="posts/:user_id" element={<UserPosts />} />
           <Route path="posts/post/:post_id" element={<FullPostItem />} />
+          <Route path="posts/post/:post_id/comments" element={<Comments />} />
           <Route path="posts/post/:post_id/editing" element={<EditPost />} />
           <Route path="users/:user_id" element={<UserAccount />} />
         </Routes>

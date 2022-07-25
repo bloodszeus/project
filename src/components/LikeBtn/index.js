@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { userData } from "../../store/userSlice";
 import { Like, LikeBlock } from "./style";
 
-export const LikeButton = ({ post, setLike }) => {
+export const LikeButton = ({ post, setLike, height, width }) => {
   const [likes, setLikes] = useState(post.likes);
   const user = useSelector(userData);
   const userId = user._id;
@@ -25,7 +25,9 @@ export const LikeButton = ({ post, setLike }) => {
           <p>{likes.length}</p>
 
           <Like
-            liked={likes.some((el) => el === userId) ? 1 : 0}
+            height={height}
+            width={width}
+            $liked={likes.some((el) => el === userId)}
             onClick={handleClick}
           />
         </LikeBlock>

@@ -22,6 +22,7 @@ export const PostItemLayout = ({
   showPost,
   deletePost,
   editPost,
+  showComments,
   ownPost,
   shorter,
   full,
@@ -56,6 +57,9 @@ export const PostItemLayout = ({
       <Buttons logged={logged}>
         <LikeButton post={props.post} setLike={handleLike} />
         <ActionBtnWrapper>
+          <ActionBtn onClick={() => showComments(props.id)}>
+            <Icons name={"Comment"} size={25} margin={"5px auto 0px"} />
+          </ActionBtn>
           {!full && (
             <ActionBtn onClick={() => showPost(props.id)}>
               <Icons name={"ShowMore"} size={40} />

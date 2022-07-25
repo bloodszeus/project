@@ -12,3 +12,5 @@ export { ReactComponent as ToTop } from "./to_top.svg";
 export { ReactComponent as ShowMorePost } from "./show-more.svg";
 export { ReactComponent as Logout } from "./logout.svg";
 export { ReactComponent as Close } from "./close.svg";
+export { ReactComponent as Comment } from "./comment.svg";
+export { ReactComponent as Reply } from "./reply.svg";

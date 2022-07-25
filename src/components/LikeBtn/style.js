@@ -2,14 +2,14 @@ import styled from "styled-components";
 import { ReactComponent as Heart } from "./heart.svg";
 
 export const Like = styled(Heart)`
-  height: 27px;
-  width: 27px;
+  height: ${(props) => (props.height ? `${props.height}px` : "27px")};
+  width: ${(props) => (props.width ? `${props.width}px` : "27px")};
 
   & path.border {
     fill: #e53935;
   }
   & path.background {
-    fill: ${(props) => (props.liked ? "red" : "transparent")};
+    fill: ${(props) => (props.$liked ? "red" : "transparent")};
   }
   &:active {
     transform: scale(0.9);

@@ -7,6 +7,7 @@ import React from "react";
 import {
   ActionBtn,
   ActionBtnWrapper,
+  Author,
   Buttons,
   Img,
   Post,
@@ -25,11 +26,14 @@ export const PostItemLayout = ({
   ownPost,
   shorter,
   full,
+  author,
+  logged,
   props,
 }) => {
   return (
     <Post full={full}>
       <div>
+        {full && <Author>Posted by {author}</Author>}
         <Img
           placeholderSrc={
             "https://i.picsum.photos/id/1022/400/400.jpg?hmac=V4xBNyXzQdcn-vop4loRbXZAZb_vgZiwAdJdxjpjhEc"
@@ -50,7 +54,7 @@ export const PostItemLayout = ({
         </PostText>
         <PostText>{props.fullText}</PostText>
       </div>
-      <Buttons>
+      <Buttons logged={logged}>
         <LikeButton post={props.post} setLike={handleLike} />
         <ActionBtnWrapper>
           <ActionBtn onClick={() => showComments(props.id)}>

@@ -105,3 +105,8 @@ export const updateUserData = async ({ newData }) => {
 export const postImage = async () => {
   return await fetch("https://picsum.photos/400/?random=50");
 };
+
+export const getUsernameReq = async (userId) => {
+  const response = await axiosConfig.get(`users/${userId}`);
+  return response;
+};

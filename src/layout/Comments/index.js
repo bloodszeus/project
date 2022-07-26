@@ -1,27 +1,27 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React from "react";
+//Hooks
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+
+//Store
 import {
-  commenstData,
-  commentsStatus,
   getComments,
-  likeToComment,
   postComment,
   resetComment,
+  commenstData,
+  likeToComment,
+  commentsStatus,
   upadateCommentText,
 } from "store/CommentSlice";
+
+//Layout
 import { CommentsLayout } from "./CommentsLayout";
 
 export const Comments = () => {
-  const dispatch = useDispatch();
-  const comments = useSelector(commenstData);
   const status = useSelector(commentsStatus);
+  const comments = useSelector(commenstData);
+  const dispatch = useDispatch();
   const { post_id } = useParams();
   const refText = useRef("");
 
@@ -84,25 +84,24 @@ export const Comments = () => {
     () => comments.filter((item) => item.followedCommentID === null),
     [comments]
   );
-  console.log(status);
 
   return (
     <CommentsLayout
-      status={status}
-      replyComm={replyComm}
-      unreplyComm={unreplyComm}
-      refText={refText}
       edit={edit}
       error={error}
-      followedId={comment.followedCommentID}
-      update={confirmUpdateHandler}
-      updateComment={updateTextHandler}
+      status={status}
+      refText={refText}
+      replyComm={replyComm}
       setLike={LikeHandler}
+      unreplyComm={unreplyComm}
       commentText={comment.text}
-      postComment={postCommentHandler}
-      deleteFollowedId={deleteFollowedIdHandler}
       setComment={commentHandler}
+      update={confirmUpdateHandler}
       follow={followedCommentHandler}
+      postComment={postCommentHandler}
+      updateComment={updateTextHandler}
+      followedId={comment.followedCommentID}
+      deleteFollowedId={deleteFollowedIdHandler}
     />
   );
 };

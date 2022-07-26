@@ -1,19 +1,21 @@
-import { getUsernameReq } from "API/api";
-
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
+//Hooks
 import { useDispatch } from "react-redux";
 import { deleteComment } from "store/CommentSlice";
-
+import { useEffect, useMemo, useState } from "react";
+//Api Request
+import { getUsernameReq } from "API/api";
+//Components
 import { CommentItem } from "./components/CommentItem/CommentItem";
-
+//Style
 import { ShowReplays, Wrapper } from "./style";
 
 export const CommentBlock = ({
   text,
-  comment,
-  follow,
-  setLike,
   reply,
+  follow,
+  comment,
+  setLike,
   updateComment,
 }) => {
   const dispatch = useDispatch();

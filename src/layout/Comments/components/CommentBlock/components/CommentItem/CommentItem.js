@@ -1,28 +1,34 @@
+import React from "react";
+//Hooks
+import { useSelector } from "react-redux";
+import { useEffect, useMemo, useState } from "react";
+//Api Requests
 import { getUsernameReq } from "API/api";
+//Store
+import { userData } from "store/userSlice";
+//Components
 import { Icons } from "components/Icons";
 import { LikeButton } from "components/LikeBtn";
-import React, { useEffect, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
-import { userData } from "store/userSlice";
+//Style
 import {
+  Wrapper,
+  ReplyBtn,
+  PostedBy,
   BtnWrapper,
   CommentText,
   CommentWrapper,
-  PostedBy,
-  ReplyBtn,
-  Wrapper,
 } from "./style";
 
 export const CommentItem = ({
-  edit,
-  username,
   text,
+  edit,
   comment,
-  deleteAction,
-  updateAction,
-  replyAction,
+  username,
   likesItem,
   likesAction,
+  replyAction,
+  updateAction,
+  deleteAction,
 }) => {
   const user = useSelector(userData);
   const ownPost = useMemo(

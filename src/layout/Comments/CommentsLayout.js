@@ -1,36 +1,39 @@
-import { Icons } from "components/Icons";
-import { STATUS } from "constants/LoadStatus";
-import { Header } from "layout/Header";
 import React from "react";
-import { CommentBlock } from "./components/CommentBlock/CommentBlock";
+//Components
+import { Header } from "layout/Header";
+import { Icons } from "components/Icons";
 import { PostInfo } from "./components/PostInfo/PostInfo";
+import { CommentBlock } from "./components/CommentBlock/CommentBlock";
+//Constants
+import { STATUS } from "constants/LoadStatus";
+//Styles
 import {
-  CompleteWrapper,
   Error,
+  Wrapper,
+  LeaveBtn,
+  Textarea,
   FollowID,
   InputBlock,
-  LeaveBtn,
-  LeaveCommentBlock,
-  Textarea,
-  Wrapper,
   WrapperPost,
+  CompleteWrapper,
+  LeaveCommentBlock,
 } from "./style";
 
 export const CommentsLayout = ({
-  status,
-  setComment,
-  follow,
-  followedId,
-  deleteFollowedId,
-  setLike,
-  postComment,
-  updateComment,
-  update,
   edit,
   error,
+  status,
+  follow,
+  update,
   refText,
+  setLike,
   replyComm,
+  setComment,
+  followedId,
+  postComment,
   unreplyComm,
+  updateComment,
+  deleteFollowedId,
 }) => {
   return (
     <>

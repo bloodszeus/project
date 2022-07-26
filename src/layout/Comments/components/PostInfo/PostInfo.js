@@ -1,10 +1,14 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+//Hooks
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+//Redux
 import { getPostApi, post, stateReset } from "store/FullPostSlice";
+//Style
 import { Descr, FullDescription, Line, PostWrapper, Title } from "./style";
 
-export const PostInfo = ({ postId }) => {
+export const PostInfo = () => {
   const dispatch = useDispatch();
   const postData = useSelector(post);
   const { post_id } = useParams();

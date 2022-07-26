@@ -1,6 +1,11 @@
-import { useContext, useEffect } from "react";
-import { UserPostsLayout } from "./UserPostsLayout";
+import React from "react";
+
+//Hooks
+import { useContext, useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+
+// Redux Store
 import {
   fetchPostByUserId,
   userPosts,
@@ -10,8 +15,12 @@ import {
 } from "../../store/UserPostSlice";
 import { userData } from "../../store/userSlice";
 import { fetchUserInfo } from "../../store/userSlice";
-import { useNavigate, useParams } from "react-router-dom";
+
+// Context
 import { AuthContext } from "../../context";
+
+// Layout
+import { UserPostsLayout } from "./UserPostsLayout";
 
 export const UserPosts = () => {
   const posts = useSelector(userPosts);
@@ -25,12 +34,15 @@ export const UserPosts = () => {
   const { user_id } = useParams();
   const navigate = useNavigate();
 
-  const pathError = user_id === userId._id;
-  const userDataLength = Object.keys(userId).length;
+  const pathError = useMemo(
+    () => user_id !== userId._id,
+    [userId._id, user_id]
+  );
+  const userDataLength = useMemo(() => Object.keys(userId).length, [userId]);
 
   useEffect(() => {
     if (!userDataLength) dispatch(fetchUserInfo());
-    if (pathError) {
+    if (!pathError) {
       dispatch(resetPost());
       dispatch(fetchPostByUserId(user_id));
     }
@@ -43,11 +55,11 @@ export const UserPosts = () => {
 
   return (
     <UserPostsLayout
+      posts={posts}
+      error={error}
+      status={status}
       userId={userId._id}
       pathError={pathError}
-      status={status}
-      error={error}
-      posts={posts}
     />
   );
 };

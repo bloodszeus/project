@@ -13,15 +13,16 @@ export const Input = ({ label, error, id, className, ...props }) => {
 };
 
 Input.propTypes = {
-  inputType: PropTypes.oneOfType(["text", "number"]),
+  type: PropTypes.oneOf(["text", "number", "email", "password", "tel"]),
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
+  onBlur: PropTypes.func,
   error: PropTypes.string,
   label: PropTypes.string,
   id: PropTypes.string,
 };
 
 Input.defaultProps = {
-  inputType: "text",
+  type: "text",
   placeholder: "placeholder text",
 };

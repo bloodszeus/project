@@ -1,5 +1,9 @@
 import React from "react";
-
+//Constants
+import { SignInInput } from "constants/SignInInfo";
+//Components
+import { Input } from "components/Input PropTypes";
+//Styles
 import {
   BlockContainer,
   Block,
@@ -14,16 +18,7 @@ import {
   Wrapper,
 } from "./style";
 
-import { Input } from "components/Input";
-import { SignInInput } from "constants/SignInInfo";
-
-export const SignInLayout = ({
-  onSubmit,
-  onChange,
-  onPageChange,
-  onBlur,
-  error,
-}) => {
+export const SignInLayout = ({ onPageChange, form, submit }) => {
   return (
     <Wrapper>
       <BlockContainer>
@@ -33,26 +28,17 @@ export const SignInLayout = ({
             <ButtonSignUp onClick={onPageChange}>Sign Up</ButtonSignUp>
           </Section>
         </Block>
-
-        <FormContainer
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 100 }}
-          transition={{ duration: 0.4 }}
-        >
-          <FormField onSubmit={onSubmit}>
+        <FormContainer>
+          <FormField onSubmit={submit}>
             <FormTitle>Log In</FormTitle>
-            {SignInInput.map((item, index) => (
+            {SignInInput.map((item) => (
               <Input
-                onBlur={onBlur}
-                onChange={onChange}
-                error={error[item.name]}
-                key={index}
-                label={item.label}
-                name={item.name}
+                key={item.id}
                 type={item.type}
-                id={item.id}
+                label={item.label}
+                {...form.register(item.name)}
                 placeholder={item.placeholder}
+                error={form.formState.errors[item.name]?.message}
               />
             ))}
             <ButtonSubmit>Sign In</ButtonSubmit>

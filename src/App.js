@@ -1,16 +1,19 @@
-import { useState } from "react";
-import { Route, Routes, Navigate, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
+//Libs
 import { GlobalStyle } from "GlobalStyle";
+import { AnimatePresence } from "framer-motion";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
+//Context
+import { AuthContext } from "context";
+//Layout
 import { SignUp } from "layout/SignUp";
 import { SignIn } from "layout/SignIn";
-import { Homepage } from "layout/Homepage";
-import { AuthContext } from "context";
-import { UserPosts } from "layout/UserPosts";
-import { FullPostItem } from "layout/FullPostItem";
 import { EditPost } from "layout/EditPost";
-import { UserAccount } from "layout/UserAccount";
 import { Comments } from "layout/Comments";
+import { Homepage } from "layout/Homepage";
+import { UserPosts } from "layout/UserPosts";
+import { UserAccount } from "layout/UserAccount";
+import { FullPostItem } from "layout/FullPostItem";
 
 export const App = () => {
   const location = useLocation();

@@ -1,28 +1,29 @@
 import React from "react";
+//Components
+import { Input } from "components/Input PropTypes";
+//Constants
+import { Inputs } from "constants/SignUpInfo";
+//Styles
 import {
-  BlockContainer,
   Block,
-  Section,
   Title,
-  FormTitle,
-  FormContainer,
-  FormField,
-  ButtonSignIn,
-  ButtonSubmit,
+  Section,
   Wrapper,
+  FormField,
+  FormTitle,
+  ButtonSubmit,
+  ButtonSignIn,
+  FormContainer,
   ThanksMassage,
+  BlockContainer,
 } from "./style";
 
-import { Input } from "../../components/Input";
-import { Inputs } from "../../constants/SignUpInfo";
-
 export const SignUpLayout = ({
-  onSubmit,
-  onChange,
-  onPageChange,
-  error,
-  onBlur,
+  submit,
+  errors,
   isValid,
+  register,
+  pageChange,
 }) => {
   return (
     <Wrapper>
@@ -30,7 +31,7 @@ export const SignUpLayout = ({
         <Block>
           <Section>
             <Title>Do you have account ?</Title>
-            <ButtonSignIn onClick={onPageChange}>Sign In</ButtonSignIn>
+            <ButtonSignIn onClick={pageChange}>Sign In</ButtonSignIn>
           </Section>
         </Block>
 
@@ -38,23 +39,22 @@ export const SignUpLayout = ({
           {isValid ? (
             <ThanksMassage>Thanks for registration</ThanksMassage>
           ) : (
-            <FormField onSubmit={onSubmit}>
-              <FormTitle>Registration</FormTitle>
-              {Inputs.map((item, index) => (
-                <Input
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  key={index}
-                  label={item.label}
-                  name={item.name}
-                  type={item.type}
-                  id={item.id}
-                  placeholder={item.placeholder}
-                  error={error[item.name]}
-                />
-              ))}
-              <ButtonSubmit>Sign Up</ButtonSubmit>
-            </FormField>
+            <>
+              <FormField onSubmit={submit}>
+                <FormTitle>Registration</FormTitle>
+                {Inputs.map((item) => (
+                  <Input
+                    key={item.name}
+                    type={item.type}
+                    label={item.label}
+                    {...register(item.name)}
+                    placeholder={item.placeholder}
+                    error={"" || errors[item.name]?.message}
+                  />
+                ))}
+                <ButtonSubmit>Sign Up</ButtonSubmit>
+              </FormField>
+            </>
           )}
         </FormContainer>
       </BlockContainer>

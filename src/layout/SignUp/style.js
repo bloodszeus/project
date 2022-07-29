@@ -44,6 +44,7 @@ export const FormTitle = styled.h3`
   font-size: 25px;
   font-weight: 500;
   color: #333;
+  margin: 0;
 `;
 
 export const FormContainer = styled(motion.div).attrs(() => ({

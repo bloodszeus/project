@@ -1,10 +1,10 @@
 export const Inputs = [
   {
-    label: "Login",
+    label: "Name",
     type: "text",
-    id: "login",
-    name: "login",
-    placeholder: "Login",
+    id: "name",
+    name: "name",
+    placeholder: "Name",
   },
   {
     label: "E-mail",
@@ -17,14 +17,14 @@ export const Inputs = [
     label: "Password",
     type: "password",
     id: "pass",
-    name: "pass",
+    name: "password",
     placeholder: "Enter your password",
   },
   {
     label: "Repeat your password",
     type: "password",
     id: "pass2",
-    name: "pass2",
+    name: "password2",
     placeholder: "Enter your password",
   },
 ];

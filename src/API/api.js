@@ -5,6 +5,7 @@ export const SignInValidApi = async (userData) => {
     const response = await axiosConfig.post("/auth", {
       ...userData,
     });
+
     const token = response.data.token;
     localStorage.setItem("authToken", token);
     return response;
@@ -28,7 +29,6 @@ export const SignUpValidApi = async (userData) => {
       ...userData,
     });
   } catch (err) {
-    console.log(err.response);
     return err.response;
   }
 };

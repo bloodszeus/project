@@ -45,7 +45,12 @@ export const FormTitle = styled.h3`
   color: #333;
 `;
 
-export const FormContainer = styled(motion.div)`
+export const FormContainer = styled(motion.div).attrs(() => ({
+  initial: { opacity: 0, x: 50 },
+  animate: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: 100 },
+  transition: { duration: 0.4 },
+}))`
   height: 100%;
   width: 50%;
   background-color: #fff;

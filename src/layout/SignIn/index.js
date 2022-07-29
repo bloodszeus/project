@@ -1,36 +1,47 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+//Hooks
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+//Api Requests
+import { SignInApi, SignInValidApi } from "API/api";
+//Context
 import { AuthContext } from "context";
-import { useValid } from "hooks/useValid";
+//Libs
+import { yupResolver } from "@hookform/resolvers/yup";
+//Validation
+import { schema } from "./validate";
+//Layout
 import { SignInLayout } from "./SignInLayout";
-import { validate } from "./validate";
-import { SignInApi } from "API/api";
 
 export const SignIn = () => {
   const { setLogged } = useContext(AuthContext);
-  const form = {
-    email: "",
-    password: "",
-  };
-
   let navigate = useNavigate();
 
-  const { onChangeHandler, onBlurHandler, onSubmitHandle, error } = useValid({
-    submit,
-    validate,
-    formState: form,
+  const form = useForm({
+    mode: "onBlur",
+    resolver: yupResolver(schema),
   });
 
-  async function submit() {
-    const response = await SignInApi();
-    if (response.data?.error || !response?.data) {
-      return;
+  useEffect(() => {
+    if (form.formState.isSubmitSuccessful) {
+      form.reset();
+      getUser();
+      localStorage.setItem("logged", "true");
+      setLogged(JSON.parse(localStorage.getItem("logged")));
+      navigate("/home");
     }
+  }, [form.formState.isSubmitSuccessful]);
 
-    localStorage.setItem("logged", "true");
-    setLogged(JSON.parse(localStorage.getItem("logged")));
-    navigate("/home");
-  }
+  const submit = async (data) => {
+    const response = await SignInValidApi(data);
+    if (response.status !== 200)
+      form.setError("email", {
+        type: "custom",
+        message: "Invalid E-mail or password",
+      });
+  };
+
+  const getUser = async () => await SignInApi();
 
   const onPageChangeHandler = () => {
     navigate("/user-valid/sign-up");
@@ -38,10 +49,8 @@ export const SignIn = () => {
 
   return (
     <SignInLayout
-      error={error}
-      onBlur={onBlurHandler}
-      onSubmit={onSubmitHandle}
-      onChange={onChangeHandler}
+      form={form}
+      submit={form.handleSubmit(submit)}
       onPageChange={onPageChangeHandler}
     />
   );

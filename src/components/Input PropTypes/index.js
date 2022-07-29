@@ -1,16 +1,18 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import { StyledInput, Wrapper } from "./style";
 
-export const Input = ({ label, error, id, className, ...props }) => {
-  return (
-    <Wrapper className={className}>
-      <label htmlFor={id}>{label}</label>
-      <StyledInput error={error} id={id} {...props}></StyledInput>
-      <span>{error ? error : " "}</span>
-    </Wrapper>
-  );
-};
+export const Input = forwardRef(
+  ({ label, error, id, className, ...props }, ref) => {
+    return (
+      <Wrapper className={className}>
+        <label htmlFor={id}>{label}</label>
+        <StyledInput error={error} id={id} {...props} ref={ref} />
+        <span>{error ? error : " "}</span>
+      </Wrapper>
+    );
+  }
+);
 
 Input.propTypes = {
   type: PropTypes.oneOf(["text", "number", "email", "password", "tel"]),

@@ -1,35 +1,8 @@
-import { SignInValidApi } from "API/api";
+import * as yup from "yup";
 
-export const validate = async (form) => {
-  let error = {};
-
-  const { email, password } = form;
-
-  if (email.length === 0) {
-    error.email = "Login is required";
-  }
-  if (password.length === 0) {
-    error.password = "Password is required";
-  }
-
-  if (!error.login && !error.email) {
-    const response = await SignInValidApi(form);
-
-    if (!response?.data) {
-      error.email = "Something went wrong";
-    }
-
-    if (response?.data?.error) {
-      const errorMass = response.data.error[0].message;
-      const errorKey = response.data.error[0].context?.key;
-
-      if (errorKey === "email") error.email = errorMass;
-
-      if (errorKey === "password") error.password = errorMass;
-
-      if (response.status === 404) error.email = "Invalid e-mail or password";
-    }
-  }
-
-  return { error };
-};
+export const schema = yup
+  .object({
+    email: yup.string().required("E-mail is required"),
+    password: yup.string().required("Password is required"),
+  })
+  .required();

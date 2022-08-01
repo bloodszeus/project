@@ -1,20 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// Components
 import { Button } from "../Button";
 import { Modal } from "../Modal";
 import { NewPost } from "../NewPost";
-
+// Style
 import { BtnWrapper, CreatePostBtn } from "./style";
 
 export const CreatePostModalLayout = ({
+  error,
   logged,
+  submit,
+  status,
   showModal,
+  getPostData,
   setShowModal,
   showModalHandler,
-  submit,
-  getPostData,
-  status,
-  error,
 }) => {
   return (
     <BtnWrapper>

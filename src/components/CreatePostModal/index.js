@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
+// Hooks
 import { useDispatch, useSelector } from "react-redux";
-import { AuthContext } from "../../context";
+// Context
+import { AuthContext } from "context";
+// Store
 import {
   fetchNewPost,
   postsError,
   postsStatus,
   reset,
-} from "../../store/UserPostSlice";
+} from "store/UserPostSlice";
+//Layout
 import { CreatePostModalLayout } from "./CreatePostModalLayout";
 
 export const CreatePostModal = () => {
@@ -34,21 +38,21 @@ export const CreatePostModal = () => {
     if (status === "succeeded") {
       setTimeout(() => {
         dispatch(reset());
-        handleShowModal();
+        setShowModal(false);
       }, 1000);
     }
   }, [status]);
 
   return (
     <CreatePostModalLayout
-      status={status}
       error={error}
+      status={status}
+      logged={logged}
+      showModal={showModal}
       submit={submitHandler}
       getPostData={setPostData}
-      showModalHandler={handleShowModal}
-      logged={logged}
       setShowModal={setShowModal}
-      showModal={showModal}
+      showModalHandler={handleShowModal}
     />
   );
 };
